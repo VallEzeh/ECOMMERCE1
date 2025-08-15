@@ -1,4 +1,3 @@
-import { HomeIcon } from "lucide-react";
 import React from "react";
 import { CiSearch } from 'react-icons/ci'
 
@@ -109,9 +108,43 @@ function Home() {
 
     <div className="h-[350px] w-[1250px] bg-cover bg-amber-300 mb-2 ml-2 rounded-3xl flex items-center justify-center"><img src="lgpix.webp" alt="" className="w-full h-full bg-cover bg-center rounded-2xl" /> </div>
 
+    {/* <footer></footer> */}
+
     <footer className="bg-gray-800 text-white py-4">
-      <div className="container mx-auto text-center">
-        <p>&copy; 2023 Your Company. All rights reserved.</p>
+      <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+         <div>
+            <h4 className="text-lg font-semibold mb-4">Categories</h4>
+            <ul className="space-y-2 text-sm text-gray-300">
+              <li>Promotion</li>
+              <li>TV</li>
+              <li>Freezer</li>
+              <li>Phone</li>
+              <li>Washing Machine</li>
+            </ul>
+          </div>
+
+           <div>
+            <h4 className="text-lg font-semibold mb-4">Top Brands</h4>
+            <ul className="space-y-2 text-sm text-gray-300">
+              <li>Samsung</li>
+              <li>LG</li>
+              <li>Hisense</li>
+              <li>Apple</li>
+              <li>Whirlpool</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
+            <ul className="space-y-2 text-sm text-gray-300">
+              <li>Phone: 802-829-2984</li>
+              <li>Email: support@yourcompany.com</li>
+              <li>Address: 123 Tech Street, Lagos, Nigeria</li>
+            </ul>
+          </div>
+
+          
+          
       </div>
     </footer>
    </main>
