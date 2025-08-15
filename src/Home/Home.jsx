@@ -1,3 +1,4 @@
+import { HomeIcon } from "lucide-react";
 import React from "react";
 import { CiSearch } from 'react-icons/ci'
 
