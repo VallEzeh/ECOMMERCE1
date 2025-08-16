@@ -137,7 +137,7 @@ function Home() {
           <div>
             <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
             <ul className="space-y-2 text-sm text-gray-300">
-              <li>Phone: 802-829-2984</li>
+              <li>Phone: 810-487-2437, 802-829-2984</li>
               <li>Email: support@yourcompany.com</li>
               <li>Address: 123 Tech Street, Lagos, Nigeria</li>
             </ul>
