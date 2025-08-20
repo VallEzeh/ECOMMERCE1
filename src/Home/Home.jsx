@@ -1,26 +1,55 @@
 import React from "react";
 import { CiSearch } from 'react-icons/ci'
+import { AiOutlineShop } from "react-icons/ai";
+import { IoCartOutline } from "react-icons/io5";
 
 
 
 function Home() {
   return (
    <main className=" ">
-     <header className="h-[150px] w-[100%] flex flex-col justify-between items-center">
-      
-      <div className="h-[70px] w-[100%] flex items-center flex-row  gap-10 justify-around ">
-     <div><a href=""><div className=" text-2xl ">Eco-Emporium</div> <div className="">Electronis stores</div></a></div>
-     <div className="relative">
+     <header  className="h-[150px] w-[100%] flex flex-col justify-between items-center bg-[#f5f5f5]  ">
+
+      <div className="h-[70px] w-[100%] flex items-center flex-row  gap-2 justify-around font-bold ">
+     <div><a href=""><div className=" text-2xl ">Echo-Emporium</div> <div className="">Electronis stores</div></a></div>
+     <div className="relative bg-white h-[40px] w-[600px] border  rounded-2xl  ">
        <a href=""><CiSearch className="absolute left-2 top-1/2 transform -translate-y-1/2" /></a>
        <input type="search" placeholder="    Search for products" className="h-[40px] w-[600px] border  rounded-2xl pl-10" />
      </div>
-      <a href="" className="">Nigeria</a>
-      <a href="" className="">My cart</a>
-      <a href="" className="">Login/Register</a>
+      <a href="" className="flex items-center gap-2"><div><AiOutlineShop /></div>Nigeria</a>
+      <a href="" className="flex items-center gap-2"> <IoCartOutline />My cart</a>
+      <a href="" className= "">Login/Register</a>
       </div>
 
-      <div className="h-[70px] w-[100%] flex items-center  flex-row  gap-10 justify-around ">
-         <a href="" className=""> All Categories</a>
+      <div className="h-[70px] w-[100%] flex items-center  flex-row  gap-5 justify-around  ">
+         <div className="relative"> <a href="" className=""> &nbsp; All Categories  </a> 
+         <div className="h-[350px] w-[500px] bg-blue-400 absolute grid grid-cols-2 gap-2 left-0 z-10 rounded-2xl p-5 hidden">
+
+           <div>
+          <ul className= " p-3  flex flex-col space-y-3 "style={{ maxHeight: '300px', overflowY: 'auto' }}>
+         <li>Promotion </li>
+         <li>Refrigerator</li>
+         <li>Freezer</li>
+         <li>Washing Machines</li>
+         <li>Tvs</li>
+         <li>Audio</li>
+         <li>ACs</li>
+         <li>Cookers/Microwaves</li>
+         <li>Open Box/Used</li>
+         </ul>
+         </div>
+
+         <div>
+          <ul className="p-3  flex flex-col space-y-3">
+          <li>AC</li>
+          <li>washing machines</li>
+          <li>Open Box/Used</li>
+          <li>Refrigerator</li>
+         </ul>
+         </div>
+         
+         </div>
+         </div>
       <a href="/promotions" className="">Promotion</a>
       <a href="" className="">Refrigerator</a>
       <a href="" className="">Freezer</a>
@@ -40,7 +69,7 @@ function Home() {
       </a>
     </div>
 
-    <h1 className="text-2xl  mt-5">Categories</h1>
+    <h1 className="text-2xl mt-5 ml-5">Categories</h1>
 
     <nav className=" h-[400px] w-[100%] flex flex-col">
       <div className=" h-[200px] grid grid-cols-5 gap-2 p-2"> 
@@ -92,9 +121,10 @@ function Home() {
         <video src="samsungad.mp4" controls className="w-full h-full object-cover" loop autoPlay />
 
     </div>
+    <h1 className="text-2xl mt-5 ml-5">Featured Products</h1>
 
-    <div className="h-[350px] w-[]100%] bg-gray-300 flex  mt-5 ml-1 rounded-3xl mb-5">
-      
+    <div className="h-[350px] w-[100%] bg-gray-300 flex  mt-5 ml-1 rounded-3xl mb-5">
+
       <div></div>
       <div></div>
       <div></div>
