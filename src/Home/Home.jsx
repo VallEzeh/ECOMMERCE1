@@ -27,7 +27,7 @@ function Home() {
 
            <div>
           <ul className= " p-3  flex flex-col space-y-3 "style={{ maxHeight: '300px', overflowY: 'auto' }}>
-         <li>Promotion </li>
+         <li>Promotion</li>
          <li>Refrigerator</li>
          <li>Freezer</li>
          <li>Washing Machines</li>
