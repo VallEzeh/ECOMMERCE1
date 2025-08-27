@@ -20,7 +20,7 @@ function Login() {
     const sendLoginRequest = async () => {
       try {
         const res = await fetch(
-          "https://backend1-7vdj.onrender.com/user/login",
+          "https://e-com-backend-j88f.onrender.com/user/login",
           {
             method: "POST",
             headers: {
