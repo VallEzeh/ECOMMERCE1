@@ -23,7 +23,7 @@ function Home() {
 
       <div className="h-[70px] w-[100%] flex items-center  flex-row  gap-5 justify-around  ">
          <div className="relative"> <a href="" className=""> &nbsp; All Categories  </a> 
-         <div className="h-[350px] w-[500px] bg-blue-400 absolute grid grid-cols-2 gap-2 left-0 z-10 rounded-2xl p-5 hidden">
+         <div className="h-[350px] w-[500px] bg-blue-400 absolute grid grid-cols-2 gap-2 left-0 z-10 rounded-2xl p-5 ">
 
            <div>
           <ul className= " p-3  flex flex-col space-y-3 "style={{ maxHeight: '300px', overflowY: 'auto' }}>
