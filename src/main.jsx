@@ -11,7 +11,7 @@ import Footer from "./Footer.jsx";
 import Signup from "./SignInfolder/Signup.jsx";
 import Login from "./SignInfolder/Login.jsx";
 import AdminDashboard from "./Admin/Admin.jsx";
-import ProductDashboard from "./Admin/product.jsx";
+import ProductDashboard from "./Admin/Product.jsx";
 import AddProduct from "./Admin/AddProduct.jsx";
 import AllProducts from "./Admin/AllProducts.jsx";
 import EditProduct from "./Admin/EditProduct.jsx";
