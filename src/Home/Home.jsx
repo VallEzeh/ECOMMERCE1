@@ -1,91 +1,161 @@
-import React from "react";
-import { CiSearch } from 'react-icons/ci'
-import { AiOutlineShop } from "react-icons/ai";
-import { IoCartOutline } from "react-icons/io5";
-
-
+// src/Home/Home.jsx
+import React, { useRef } from "react";
 
 function Home() {
+  const scrollRef = useRef(null);
+
+  const scroll = (dir) => {
+    if (scrollRef.current) {
+      const scrollAmount = 250; // how much to move per click
+      scrollRef.current.scrollBy({
+        left: dir === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
-   <main className=" ">
-     
-
-    <div className="h-[350px] w-[1250px]  mt-15 rounded-3xl ml-2">
-      <a href="" className="bg-cover bg-center h-full w-full block rounded-3xl" style={{ backgroundImage: `url(electronics.jpg)` }}>
-        <img src="shoptv.jpeg" alt="" className="hidden" />
-      </a>
-    </div>
-
-    <h1 className="text-2xl mt-5 ml-5">Categories</h1>
-
-    <nav className=" h-[400px] w-[100%] flex flex-col">
-      <div className=" h-[200px] grid grid-cols-5 gap-2 p-2"> 
-        <div className=" rounded-2xl" > <a href="" className="bg-cover bg-center h-full w-full block rounded-2xl text-blue-500" style={{ backgroundImage: `url(tv2.jpg)` }}> <div className="flex justify-end h-full items-end mr-3">Tvs</div></a></div>
-        <div className="  rounded-2xl"><a href="" className="bg-cover bg-center h-full w-full block rounded-2xl text-blue-500" style={{ backgroundImage: `url(speaker.jpg)` }}> <div className="flex justify-end h-full items-end mr-3">Audio</div></a></div>
-        <div className="  rounded-2xl"><a href="" className="bg-cover bg-no-repeat bg-center h-full w-full block rounded-2xl text-blue-500" style={{ backgroundImage: `url(frigde.jpg)` }}> <div className="flex justify-end h-full items-end mr-3">Refrigerator</div></a></div>
-        <div className=" rounded-2xl"><a href="" className="bg-cover bg-center h-full w-full block rounded-2xl text-blue-500" style={{ backgroundImage: `url(wash.jpg)` }}> <div className="flex justify-end h-full items-end mr-3">Washing Machines</div></a></div>
-        <div className=" rounded-2xl"><a href="" className="bg-cover bg-center h-full w-full block rounded-2xl text-blue-500" style={{ backgroundImage: `url(ac.jpg)` }}> <div className="flex justify-end h-full items-end mr-3">ACs</div></a></div>
+    <main className="px-4 md:px-8 lg:px-12">
+      {/* Hero video */}
+      <div className="w-full mt-6 rounded-2xl overflow-hidden">
+        <video
+          src="samsungad.mp4"
+          controls
+          loop
+          autoPlay
+          className="w-full h-[220px] sm:h-[300px] md:h-[400px] object-cover"
+        />
       </div>
 
-
-      <div className=" h-[200px] grid grid-cols-5 gap-2 p-2">
-       <div className=" rounded-2xl"> <a href="" className="bg-cover bg-center h-full w-full block rounded-2xl text-blue-500" style={{ backgroundImage: `url(kitchen.jpg)` }}> <div className="flex justify-end h-full items-end mr-3">Kitchen</div></a></div>
-        <div className="rounded-2xl"><a href="" className="bg-cover bg-center h-full w-full block rounded-2xl text-blue-500" style={{ backgroundImage: `url(panel.jpg)` }}> <div className="flex justify-end h-full items-end mr-3">Panels</div></a></div>
-        <div className="rounded-2xl"><a href="" className="bg-cover bg-center h-full w-full block rounded-2xl text-blue-500" style={{ backgroundImage: `url(furni.jpg)` }}> <div className="flex justify-end h-full items-end mr-3">Furniture</div></a></div>
-
-
-      </div>
-    </nav>
-
-    <div className="h-[600px] w-[1250px] bg-gray-300 flex  mt-5 ml-2 rounded-3xl ">
-      <nav className="h-[550px] w-[600px]  mt-6 ml-5  bg-cover bg-center bg-inherit bg-no-repeat" style={{backgroundImage: "url(hisense.webp)"}}></nav>
-
-      <div className="  mt-6 ml-2"><h1 className="text-2xl ml-5 ">Hisense TV ULED 110 Inch UX Series Mini-LED 4K <br /> Smart</h1><h1 className="mt-5 ml-5">NG 16,900,000 <br /><br /> Description: <br /><br />Built-in subwoofer <br />Top-firing speakers <br />Side speakers <br />CineStage X Surround..</h1>
-      <a href=""><div  className="h-[50px] w-[200px] bg-black text-white mt-10 ml-5 rounded-2xl  flex items-center justify-center" >View Products Details</div></a>
-       </div>
-    </div>
-
-   <h1 className="text-2xl  mt-5 ml-5">Shop By Brand</h1>
-
-   <nav className=" h-[400px] w-[100%] flex flex-col">
-      <div className=" h-[100px] grid grid-cols-5 gap-2 p-2"> 
-        <div className=" rounded-2xl" > <a href="" className="bg-cover bg-center h-full w-full block rounded-2xl" style={{ backgroundImage: `url(lg.png)` }}></a><h1 className="flex justify-end mt-35 text-[20px] mr-2 text-white"></h1></div>
-        <div className="  rounded-2xl"><a href="" className="bg-cover bg-center h-full w-full block rounded-2xl" style={{ backgroundImage: `url(sam.png)` }}></a><h1 className="flex justify-end mt-35 text-[20px] mr-2 text-white"></h1></div>
-        <div className="  rounded-2xl"><a href="" className="bg-cover bg-no-repeat bg-center h-full w-full block rounded-2xl" style={{ backgroundImage: `url(tcl.png)` }}></a><h1 className="flex justify-end mt-35 text-[20px] mr-2 text-white"></h1></div>
-        <div className=" rounded-2xl"><a href="" className="bg-cover bg-center h-full w-full block rounded-2xl" style={{ backgroundImage: `url(royal.png)` }}></a><h1 className="flex justify-end mt-35 text-[20px] mr-2 text-white"></h1></div>
-        <div className=" rounded-2xl"><a href="" className="bg-cover bg-center h-full w-full block rounded-2xl" style={{ backgroundImage: `url(hilogo.jpeg)` }}></a><h1 className="flex justify-end mt-35 text-[20px] mr-2 text-white"></h1></div>
+      {/* Categories */}
+      <h1 className="text-2xl font-bold mt-8 mb-4">Categories</h1>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+        {[
+          { img: "tv2.jpg", label: "Tvs" },
+          { img: "speaker.jpg", label: "Audio" },
+          { img: "frigde.jpg", label: "Refrigerator" },
+          { img: "wash.jpg", label: "Washing Machines" },
+          { img: "ac.jpg", label: "ACs" },
+          { img: "kitchen.jpg", label: "Kitchen" },
+          { img: "panel.jpg", label: "Panels" },
+          { img: "furni.jpg", label: "Furniture" },
+        ].map((item, i) => (
+          <a
+            key={i}
+            href="#"
+            className="relative h-32 sm:h-40 md:h-48 rounded-xl overflow-hidden bg-cover bg-center flex items-end text-white font-semibold"
+            style={{ backgroundImage: `url(${item.img})` }}
+          >
+            <div className="bg-black/50 w-full text-center py-1">
+              {item.label}
+            </div>
+          </a>
+        ))}
       </div>
 
-
-      <div className=" h-[100px] grid grid-cols-5 gap-2 p-2  mt-20">
-       <div className=" rounded-2xl"> <a href="" className="bg-cover bg-center h-full w-full block rounded-2xl" style={{ backgroundImage: `url(pana.png)` }}></a><h1 className="flex justify-end mt-35 text-[20px] mr-2 text-white"></h1></div>
-
-
+      {/* Featured Hisense Product */}
+      <div className="mt-10 bg-gray-200 rounded-2xl flex flex-col md:flex-row overflow-hidden">
+        <div
+          className="w-full md:w-1/2 h-64 md:h-auto bg-cover bg-center"
+          style={{ backgroundImage: "url(hisense.webp)" }}
+        />
+        <div className="p-6 md:w-1/2">
+          <h2 className="text-xl md:text-2xl font-bold">
+            Hisense TV ULED 110 Inch UX Series Mini-LED 4K Smart
+          </h2>
+          <p className="mt-4 text-lg font-semibold">NGN 16,900,000</p>
+          <p className="mt-3 text-gray-700 text-sm md:text-base">
+            Description: <br />
+            Built-in subwoofer <br />
+            Top-firing speakers <br />
+            Side speakers <br />
+            CineStage X Surround..
+          </p>
+          <a
+            href="#"
+            className="inline-block mt-6 bg-black text-white py-2 px-5 rounded-lg hover:bg-gray-800 transition"
+          >
+            View Product Details
+          </a>
+        </div>
       </div>
-    </nav>
-    <div className="h-[300px] w-[100%] bg-cover bg-amber-300 mb-10  rounded-3xl flex items-center justify-center">
 
-        <video src="samsungad.mp4" controls className="w-full h-full object-cover" loop autoPlay />
+      {/* Shop by Brand */}
+      <h1 className="text-2xl font-bold mt-10 mb-4">Shop By Brand</h1>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+        {[
+          "lg.png",
+          "sam.png",
+          "tcl.png",
+          "royal.png",
+          "hilogo.jpeg",
+          "pana.png",
+        ].map((logo, i) => (
+          <a
+            key={i}
+            href="#"
+            className="h-24 sm:h-28 bg-white rounded-xl flex items-center justify-center shadow-md"
+          >
+            <img src={logo} alt="brand" className="max-h-full object-contain" />
+          </a>
+        ))}
+      </div>
 
-    </div>
-    <h1 className="text-2xl mt-5 ml-5">Featured Products</h1>
+      {/* Promo Banner */}
+      <div className="mt-10 rounded-2xl overflow-hidden">
+        <img
+          src="wash.webp"
+          alt="promo"
+          className="w-full h-52 sm:h-72 md:h-150 object-cover"
+        />
+      </div>
 
-    <div className="h-[350px] w-[100%] bg-gray-300 flex  mt-5 ml-1 rounded-3xl mb-5">
+      {/* Featured Products (Horizontal Scroll) */}
+      <h1 className="text-2xl font-bold mt-10 mb-4">Featured Products</h1>
+      <div className="relative">
+        {/* Left Arrow */}
+        <button
+          onClick={() => scroll("left")}
+          className="absolute left-0 top-1/2 -translate-y-1/2 bg-black/60 text-white p-2 rounded-full z-10"
+        >
+          ◀
+        </button>
 
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      
-    </div>
+        {/* Scrollable row */}
+        <div
+          ref={scrollRef}
+          className="flex overflow-x-auto gap-4 scrollbar-hide scroll-smooth"
+        >
+          {Array(8)
+            .fill(0)
+            .map((_, i) => (
+              <div
+                key={i}
+                className="min-w-[180px] sm:min-w-[220px] bg-gray-200 h-40 sm:h-48 rounded-xl flex items-center justify-center flex-shrink-0"
+              >
+                Product {i + 1}
+              </div>
+            ))}
+        </div>
 
-    <div className="h-[350px] w-[1250px] bg-cover bg-amber-300 mb-2 ml-2 rounded-3xl flex items-center justify-center"><img src="lgpix.webp" alt="" className="w-full h-full bg-cover bg-center rounded-2xl" /> </div>
- 
-   </main>
+        {/* Right Arrow */}
+        <button
+          onClick={() => scroll("right")}
+          className="absolute right-0 top-1/2 -translate-y-1/2 bg-black/60 text-white p-2 rounded-full z-10"
+        >
+          ▶
+        </button>
+      </div>
+
+      {/* Bottom Banner */}
+      <div className="mt-10 mb-12 rounded-2xl overflow-hidden">
+        <img
+          src="lgpix.webp"
+          alt="bottom banner"
+          className="w-full h-52 sm:h-72 md:h-96 object-cover"
+        />
+      </div>
+    </main>
   );
 }
 

@@ -1,12 +1,16 @@
+// src/Promotions/Promotions.jsx
 import React, { useEffect, useState } from "react";
-import { Facebook, Instagram, Twitter, X, Filter } from "lucide-react";
-
+import { X, Filter } from "lucide-react";
+import { useCart } from "../Cart/CartContext";
+import toast, { Toaster } from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 function Promotions() {
   const [holdData, setHoldData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
 
-  // Brands
+  const { addToCart } = useCart();
+
   const allBrands = [
     "Apple",
     "Samsung",
@@ -23,62 +27,80 @@ function Promotions() {
   const [showAll, setShowAll] = useState(false);
   const [selectedBrands, setSelectedBrands] = useState([]);
 
-  // Price range
   const [minPrice, setMinPrice] = useState(1);
   const [maxPrice, setMaxPrice] = useState(4500000);
 
-  // Order by
   const [orderOpen, setOrderOpen] = useState(false);
   const [orderBy, setOrderBy] = useState("Default");
 
-  // Sidebar toggle for mobile
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  // Filter brands list
   const filteredBrands = allBrands.filter((brand) =>
     brand.toLowerCase().includes(search.toLowerCase())
   );
 
-  // Fetch products
+  // ✅ Fetch products from backend
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
+    fetch("https://e-com-backend-j88f.onrender.com/api") // 🔥 update with your backend URL
       .then((response) => response.json())
       .then((data) => {
         setHoldData(data);
         setFilteredData(data);
-      });
+      })
+      .catch((err) => console.error("Error fetching products:", err));
   }, []);
 
-  // Apply filters
+  // ✅ Apply filters
   useEffect(() => {
     let products = [...holdData];
 
-    // Brand filter
     if (selectedBrands.length > 0) {
       products = products.filter((p) =>
         selectedBrands.some((brand) =>
-          p.title.toLowerCase().includes(brand.toLowerCase())
+          p.brand?.toLowerCase().includes(brand.toLowerCase())
         )
       );
     }
 
-    // Price filter
     products = products.filter(
       (p) => p.price >= minPrice && p.price <= maxPrice
     );
 
-    setFilteredData(products);
-  }, [selectedBrands, minPrice, maxPrice, holdData]);
+    if (orderBy === "Price: Low to High") {
+      products.sort((a, b) => a.price - b.price);
+    } else if (orderBy === "Price: High to Low") {
+      products.sort((a, b) => b.price - a.price);
+    } else if (orderBy === "Recently Added") {
+      products = [...products].sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+    }
 
-  // Toggle brand checkbox
+    setFilteredData(products);
+  }, [selectedBrands, minPrice, maxPrice, holdData, orderBy]);
+
   const handleBrandChange = (brand) => {
     setSelectedBrands((prev) =>
       prev.includes(brand) ? prev.filter((b) => b !== brand) : [...prev, brand]
     );
   };
 
+  const handleAddToCart = (item) => {
+    addToCart({
+      id: item._id,
+      title: item.name,
+      price: item.price,
+      image: item.image?.url,
+    });
+    toast.success(`${item.name} added to cart 🛒`, {
+      position: "bottom-center",
+    });
+  };
+
   return (
     <div className="bg-gray-100 min-h-screen">
+      <Toaster />
+
       {/* Mobile Filter Button */}
       <div className="lg:hidden flex justify-end p-4">
         <button
@@ -89,16 +111,15 @@ function Promotions() {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-[27%_73%]">
+      <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr]">
         {/* Sidebar */}
         <div
-          className={`bg-amber-800 lg:relative fixed top-0 left-0 h-full w-72 transform ${
+          className={`bg-white lg:sticky lg:top-0 lg:h-screen shadow-md lg:block fixed top-0 left-0 h-full w-72 transform ${
             sidebarOpen ? "translate-x-0" : "-translate-x-full"
           } lg:translate-x-0 transition-transform duration-300 z-50`}
         >
-          <div className="bg-white text-black h-full rounded-lg p-5 overflow-y-auto">
-            {/* Close Button for Mobile */}
-            <div className="lg:hidden flex justify-end">
+          <div className="p-5 h-full overflow-y-auto">
+            <div className="lg:hidden flex justify-end mb-4">
               <button onClick={() => setSidebarOpen(false)}>
                 <X size={24} />
               </button>
@@ -154,24 +175,8 @@ function Promotions() {
                 className="w-1/2 p-1 border rounded"
               />
             </div>
-            <input
-              type="range"
-              min="1"
-              max="4500000"
-              value={minPrice}
-              onChange={(e) => setMinPrice(Number(e.target.value))}
-              className="w-full mt-2"
-            />
-            <input
-              type="range"
-              min="1"
-              max="4500000"
-              value={maxPrice}
-              onChange={(e) => setMaxPrice(Number(e.target.value))}
-              className="w-full"
-            />
-            <p className="mt-1">
-              ${minPrice.toLocaleString()} - ${maxPrice.toLocaleString()}
+            <p className="mt-1 text-sm text-gray-600">
+              ₦{minPrice.toLocaleString()} - ₦{maxPrice.toLocaleString()}
             </p>
 
             {/* Order By */}
@@ -216,38 +221,60 @@ function Promotions() {
         </div>
 
         {/* Product List */}
-        <div className="min-h-screen bg-white p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-          {filteredData.map((item) => (
-            <div
-              key={item.id}
-              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300"
-            >
-              <img
-                src={item.image}
-                alt={item.title}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-4">
-                <h3 className="font-semibold text-gray-800 text-sm truncate mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-lg font-bold text-green-600 mb-4">
-                  ${item.price}
-                </p>
-                <button className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
-                  Add to Cart
-                </button>
-              </div>
+        <div className="bg-gray-50 p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {filteredData.length === 0 ? (
+            <div className="col-span-full text-center py-20">
+              <p className="text-gray-600 text-lg">
+                No products match your filters.
+              </p>
             </div>
-          ))}
+          ) : (
+            filteredData.map((item) => (
+              <div
+                key={item._id}
+                className="bg-white rounded-xl shadow-md overflow-hidden flex flex-col hover:shadow-lg transition"
+              >
+                <Link to={`/product/${item._id}`}>
+                  <div className="h-48 flex items-center justify-center bg-gray-100">
+                    <img
+                      src={item.image?.url}
+                      alt={item.name}
+                      className="h-40 object-contain"
+                    />
+                  </div>
+                </Link>
+
+                <div className="p-4 flex flex-col flex-1">
+                  <Link to={`/product/${item._id}`}>
+                    <h3 className="font-semibold text-gray-800 text-sm line-clamp-2 flex-1 hover:text-blue-600">
+                      {item.name}
+                    </h3>
+                  </Link>
+
+                  {/* ✅ Stock info */}
+                  <p className="text-sm text-gray-500 mt-1">
+                    Stock: {item.stock}
+                  </p>
+
+                  <p className="text-lg font-bold text-green-600 mt-2 mb-4">
+                    ${item.price.toLocaleString()}
+                  </p>
+
+                  <button
+                    onClick={() => handleAddToCart(item)}
+                    className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition mt-auto"
+                  >
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            ))
+          )}
         </div>
       </div>
-
-      {/* Footer */}
-      
-      
     </div>
   );
 }
 
 export default Promotions;
+
