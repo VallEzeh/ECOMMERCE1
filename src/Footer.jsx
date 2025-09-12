@@ -49,6 +49,7 @@ function Footer() {
         © 2023 Your Company. All rights reserved.
       </div>
     </footer>
+
   );
 }
 
