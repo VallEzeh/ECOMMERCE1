@@ -17,7 +17,7 @@ function Login() {
     e.preventDefault();
     try {
       const res = await fetch(
-        "https://e-com-backend-j88f.onrender.com/user/login",
+        "https://e-com-backend-j88f.onrender.com/user/Login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
