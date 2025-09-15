@@ -29,7 +29,7 @@ function Layout({ children }) {
   const location = useLocation();
 
   // Routes where we hide Header & Footer
-  const hideOnRoutes = ["/Login", "/Signup"];
+  const hideOnRoutes = ["/login", "/Signup"];
   const isAdminRoute = location.pathname.startsWith("/admin");
   const shouldHide = hideOnRoutes.includes(location.pathname) || isAdminRoute;
 
